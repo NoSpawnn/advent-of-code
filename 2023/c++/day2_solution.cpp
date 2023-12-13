@@ -22,8 +22,7 @@
 
 int get_game_id_and_cut_str(std::string *s);
 
-const std::map<std::string, int> MAX_COUNTS = {
-    {RED, 12}, {BLUE, 14}, {GREEN, 13}};
+std::map<std::string, int> MAX_COUNTS = {{RED, 12}, {BLUE, 14}, {GREEN, 13}};
 
 int main() {
   std::ifstream input("day2_input.txt");
@@ -51,10 +50,15 @@ int main() {
       counts[word] += count;
     }
 
-    if (!(counts.at(RED) > MAX_COUNTS.at(RED) ||
-          counts.at(BLUE) > MAX_COUNTS.at(BLUE) ||
-          counts.at(GREEN) > MAX_COUNTS.at(GREEN))) {
+    std::cout << "Game ID: " << game_id << ", RED: " << counts[RED]
+              << ", GREEN: " << counts[GREEN] << ", BLUE: " << counts[BLUE]
+              << ", Total: " << total << std::endl;
+              
+    if (counts[RED] <= MAX_COUNTS[RED] && counts[BLUE] <= MAX_COUNTS[BLUE] &&
+        counts[GREEN] <= MAX_COUNTS[GREEN]) {
       total += game_id;
+
+      std::cout << "ADDED" << game_id << "\n";
     }
   }
 
@@ -64,9 +68,10 @@ int main() {
 
 int get_game_id_and_cut_str(std::string *s) {
   size_t colon_pos = s->find(":");
+
   int id = strtol(s->substr(4, colon_pos).c_str(), NULL, 10);
 
-  *s = s->substr(colon_pos + 2, s->length() - 1);
+  *s = s->substr(colon_pos + 2, s->length() - colon_pos - 1);
 
   return id;
 }
