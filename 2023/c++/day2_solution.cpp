@@ -30,6 +30,8 @@ int main() {
 
   if (!input.is_open()) {
     perror("ERROR - failed to open file:");
+
+    return -1;
   }
 
   int total = 0;
@@ -43,13 +45,13 @@ int main() {
     std::vector<std::string> sets = split_into_sets(line);
 
     for (auto set : sets) {
-      std::cout << set << "\n";
-
       std::istringstream iss(set);
       std::map<std::string, int> counts = {{RED, 0}, {BLUE, 0}, {GREEN, 0}};
 
       while (iss >> count) {
         iss >> color;
+
+        color.erase(std::remove(color.begin(), color.end(), ','), color.end());
 
         counts[color] += count;
       }
