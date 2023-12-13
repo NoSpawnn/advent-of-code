@@ -3,8 +3,7 @@
 2. Get game ID
 3. Split line into sets by semicolon
 4. Split sets into individual draws
-5. Split draw into number and color
-6. Total up colors for each draw and compare to ensure valid
+5. Count up for each draw and check valid, this game is valid if all draws are valid
 */
 
 #include <algorithm>
@@ -36,29 +35,26 @@ int main() {
   while (std::getline(input, line)) {
     int game_id = get_game_id_and_cut_str(&line);
 
-    std::map<std::string, int> counts = {{RED, 0}, {BLUE, 0}, {GREEN, 0}};
-
     std::istringstream iss(line);
     std::string word;
     int count;
     while (iss >> count) {
+      bool valid = true;
+      std::map<std::string, int> counts = {{RED, 0}, {BLUE, 0}, {GREEN, 0}};
       iss >> word;
 
       word.erase(std::remove(word.begin(), word.end(), ','), word.end());
       word.erase(std::remove(word.begin(), word.end(), ';'), word.end());
 
-      counts[word] += count;
-    }
+      for (auto [color, count] : counts) {
+        if (count > MAX_COUNTS[color]) {
+          valid = false;
+        }
+      }
 
-    std::cout << "Game ID: " << game_id << ", RED: " << counts[RED]
-              << ", GREEN: " << counts[GREEN] << ", BLUE: " << counts[BLUE]
-              << ", Total: " << total << std::endl;
-              
-    if (counts[RED] <= MAX_COUNTS[RED] && counts[BLUE] <= MAX_COUNTS[BLUE] &&
-        counts[GREEN] <= MAX_COUNTS[GREEN]) {
-      total += game_id;
-
-      std::cout << "ADDED" << game_id << "\n";
+      if (valid) {
+        total += game_id;
+      }
     }
   }
 
