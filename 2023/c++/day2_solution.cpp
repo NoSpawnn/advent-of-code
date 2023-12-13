@@ -23,7 +23,8 @@ valid
 int get_game_id_and_cut_str(std::string *s);
 std::vector<std::string> split_into_sets(std::string line);
 
-std::map<std::string, int> MAX_COUNTS = {{RED, 12}, {BLUE, 14}, {GREEN, 13}};
+const std::map<std::string, int> MAX_COUNTS = {
+    {RED, 12}, {BLUE, 14}, {GREEN, 13}};
 
 int main() {
   std::ifstream input("day2_input.txt");
@@ -34,7 +35,8 @@ int main() {
     return -1;
   }
 
-  int total = 0;
+  int total1 = 0;
+  int total2 = 0;
   std::string line;
   while (std::getline(input, line)) {
     int game_id = get_game_id_and_cut_str(&line);
@@ -43,6 +45,7 @@ int main() {
     std::string color;
     int count;
     std::vector<std::string> sets = split_into_sets(line);
+    std::map<std::string, int> minimum_a = {{RED, 0}, {BLUE, 0}, {GREEN, 0}};
 
     for (auto set : sets) {
       std::istringstream iss(set);
@@ -54,21 +57,29 @@ int main() {
         color.erase(std::remove(color.begin(), color.end(), ','), color.end());
 
         counts[color] += count;
+
+        if (count > minimum_a[color]) {
+          minimum_a[color] = count;
+        }
       }
 
       for (auto [color, count] : counts) {
-        if (count > MAX_COUNTS[color]) {
+        if (count > MAX_COUNTS.at(color)) {
           valid = false;
         }
       }
     }
 
+    total2 += minimum_a[RED] * minimum_a[BLUE] * minimum_a[GREEN];
+
     if (valid) {
-      total += game_id;
+      total1 += game_id;
     }
   }
 
-  std::cout << "P1 TOTAL: " << total << std::endl;
+  std::cout << "P1 TOTAL: " << total1 << std::endl;
+  std::cout << "P2 TOTAL: " << total2 << std::endl;
+
   return 0;
 }
 
