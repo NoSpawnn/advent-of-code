@@ -4,58 +4,118 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"math"
 	"os"
+	"strconv"
 	"unicode"
 )
 
-const LINE_LEN = 10
+type DigitPos struct {
+	line  int
+	start int
+	end   int
+}
+
+type PunctPos struct {
+	line int
+	col  int
+}
 
 func main() {
-	file, err := os.Open("day3_input.txt")
-	defer file.Close()
+	input, err := os.Open("day3_input.txt")
+	defer input.Close()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	var arr []string
-	scanner := bufio.NewScanner(file)
+	var lines []string
+	scanner := bufio.NewScanner(input)
 	for scanner.Scan() {
-		arr = append(arr, scanner.Text())
+		lines = append(lines, scanner.Text())
 	}
 
-	for line_idx, line := range arr {
-		numbers := find_digits(line)
+	punctPositions := findPuncts(lines)
+	numPositions := findDigits(lines)
 
-		for _, a := range numbers {
-			start, end := a[0], a[1]
+	total1 := 0
+	for _, pPos := range punctPositions {
+		for _, nPos := range numPositions {
+			if math.Abs(float64(pPos.line)-float64(nPos.line)) <= 1.0 && nPos.start-1 <= pPos.col && pPos.col <= nPos.end {
+				t, _ := strconv.Atoi(lines[nPos.line][nPos.start:nPos.end])
 
+				total1 += t
+			}
 		}
 	}
+
+	total2 := 0
+	for _, pPos := range punctPositions {
+		if lines[pPos.line][pPos.col] != '*' {
+			continue
+		}
+
+		matched := [2]int{0, 0}
+		for _, nPos := range numPositions {
+			if math.Abs(float64(pPos.line)-float64(nPos.line)) <= 1.0 && nPos.start-1 <= pPos.col && pPos.col <= nPos.end {
+				t, _ := strconv.Atoi(lines[nPos.line][nPos.start:nPos.end])
+
+				if matched[0] == 0 {
+					matched[0] = t
+				} else {
+					matched[1] = t
+				}
+			}
+		}
+
+		if matched[0] != 0 && matched[1] != 0 {
+			total2 += matched[0] * matched[1]
+		}
+
+	}
+
+	fmt.Printf("P1 TOTAL: %d\n", total1)
+	fmt.Printf("P2 TOTAL: %d\n", total2)
 }
 
-func find_digits(line string) [][2]int {
-	var arr [][2]int
+func findDigits(lines []string) []DigitPos {
+	var arr []DigitPos
 
-	for idx := 0; idx < LINE_LEN; idx++ {
-		if unicode.IsDigit(rune(line[idx])) {
-			first_digit_idx := idx
-			last_digit_idx := idx + 1
+	for lineIdx, line := range lines {
+		lineLen := len(line) - 1
 
-			if last_digit_idx == LINE_LEN {
-				arr = append(arr, [2]int{first_digit_idx, last_digit_idx})
-				break
+		for col := 0; col < lineLen; col++ {
+			if unicode.IsDigit(rune(line[col])) {
+				firstDigitIdx := col
+				lastDigitIdx := col + 1
+
+				for lastDigitIdx <= lineLen && unicode.IsDigit(rune(line[lastDigitIdx])) {
+					lastDigitIdx++
+				}
+
+				arr = append(arr, DigitPos{lineIdx, firstDigitIdx, lastDigitIdx})
+				col = lastDigitIdx
 			}
-
-			for unicode.IsDigit(rune(line[last_digit_idx])) {
-				last_digit_idx++
-			}
-
-			fmt.Printf("%d : %d - ", first_digit_idx, last_digit_idx)
-			arr = append(arr, [2]int{first_digit_idx, last_digit_idx})
-			idx = last_digit_idx
 		}
 	}
 
 	return arr
+}
+
+func findPuncts(lines []string) []PunctPos {
+	var punctPos []PunctPos
+
+	for row, text := range lines {
+		for col, char := range []rune(text) {
+			if char == '.' {
+				continue
+			}
+
+			if unicode.IsPunct(char) || unicode.IsSymbol(char) {
+				punctPos = append(punctPos, PunctPos{row, col})
+			}
+		}
+	}
+
+	return punctPos
 }
