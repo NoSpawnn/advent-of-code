@@ -1,12 +1,3 @@
-/*
-1. Read line (1 game)
-2. Get game ID
-3. Split line into sets by semicolon
-4. Split sets into individual draws
-5. Count up for each draw and check valid, this game is valid if all draws are
-valid
-*/
-
 #include <algorithm>
 #include <cstdio>
 #include <fstream>
@@ -66,6 +57,7 @@ int main() {
       for (auto [color, count] : counts) {
         if (count > MAX_COUNTS.at(color)) {
           valid = false;
+          break;
         }
       }
     }

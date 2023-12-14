@@ -51,20 +51,22 @@ std::array<int, 2> find_numbers(std::string s) {
 
   // Find first number
   for (size_t i = 0; i < s.length(); i++) {
-    if (std::isdigit(s[i])) {
-      numbers[0] = s[i] - '0';
-
-      break;
+    if (!std::isdigit(s[i])) {
+      continue;
     }
+
+    numbers[0] = s[i] - '0';
+    break;
   }
 
   // Find last number
   for (size_t i = s.length() - 1; i >= 0; i--) {
-    if (std::isdigit(s[i])) {
-      numbers[1] = s[i] - '0';
-
-      break;
+    if (!std::isdigit(s[i])) {
+      continue;
     }
+
+    numbers[1] = s[i] - '0';
+    break;
   }
 
   return numbers;
