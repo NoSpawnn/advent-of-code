@@ -27,7 +27,7 @@ const std::map<std::string, int> MAX_COUNTS = {
     {RED, 12}, {BLUE, 14}, {GREEN, 13}};
 
 int main() {
-  std::ifstream input("day2_input.txt");
+  std::ifstream input("../input/day2.txt");
 
   if (!input.is_open()) {
     perror("ERROR - failed to open file:");

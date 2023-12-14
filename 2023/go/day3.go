@@ -22,7 +22,7 @@ type PunctPos struct {
 }
 
 func main() {
-	input, err := os.Open("day3_input.txt")
+	input, err := os.Open("../input/day3.txt")
 	defer input.Close()
 
 	if err != nil {

@@ -14,7 +14,7 @@ const std::map<std::string, std::string> WORDS_TO_NUMS = {
     {"seven", "s7n"}, {"eight", "e8t"}, {"nine", "n9e"}};
 
 int main() {
-  std::ifstream input("day1_input.txt");
+  std::ifstream input("../input/day1.txt");
 
   if (!input.is_open()) {
     perror("ERROR - failed to open file:");
