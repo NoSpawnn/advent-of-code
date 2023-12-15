@@ -1,6 +1,7 @@
 // https://adventofcode.com/2023/day/6
 
 #include <cassert>
+#include <cmath>
 #include <cstddef>
 #include <cstdlib>
 #include <cstring>
@@ -38,25 +39,15 @@ int main() {
   assert(times.size() == distances.size());
 
   for (size_t race_no = 0; race_no < times.size(); ++race_no) {
-    int time_limit = times[race_no];
-    int distance_to_beat = distances[race_no];
+    float disc = pow(times[race_no], 2) - 4 * distances[race_no];
 
-    int wins = 0;
-    bool has_won = false;
-    for (size_t held = 0; held < time_limit; ++held) {
-      int distance = held * (time_limit - held);
-
-      if (has_won && distance < distance_to_beat) {
-        break;
-      }
-
-      if (distance > distance_to_beat) {
-        wins++;
-        has_won = true;
-      }
+    if (disc <= 0) {
+      return -1;
     }
 
-    total1 *= wins;
+    float sol1 = (times[race_no] + sqrt(disc)) / 2;
+    float sol2 = (times[race_no] - sqrt(disc)) / 2;
+    total1 *= floor(sol1) - ceil(sol2) + ((sol1 > sol2) ? 1 : -1);
   }
 
   stringstream p2_time, p2_distance;
