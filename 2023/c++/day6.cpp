@@ -22,8 +22,7 @@ int main() {
   string line;
   int line_no = 0;
   while (getline(input, line)) {
-    sregex_iterator iter(line.begin(), line.end(), number_regex);
-    sregex_iterator end;
+    sregex_iterator iter(line.begin(), line.end(), number_regex), end;
 
     for (; iter != end; ++iter) {
       if (line_no == 0) {
@@ -53,6 +52,7 @@ int main() {
 
       if (distance > distance_to_beat) {
         wins++;
+        has_won = true;
       }
     }
 
@@ -77,6 +77,7 @@ int main() {
 
     if (distance > distance_to_beat) {
       total2++;
+      has_won = true;
     }
   }
 
