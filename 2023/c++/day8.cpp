@@ -2,16 +2,12 @@
 
 #include <algorithm>
 #include <array>
-#include <atomic>
 #include <fstream>
 #include <iostream>
 #include <iterator>
 #include <map>
-#include <mutex>
-#include <queue>
 #include <regex>
 #include <string>
-#include <thread>
 #include <vector>
 
 using namespace std;
