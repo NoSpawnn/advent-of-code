@@ -9,6 +9,10 @@
 
 using namespace std;
 
+bool zeroed(vector<int> sequence) {
+  return all_of(sequence.begin(), sequence.end(), [](int x) { return x == 0; });
+}
+
 static vector<int> find_diffs(vector<int> nums) {
   vector<int> diffs;
 
@@ -22,7 +26,7 @@ static vector<int> find_diffs(vector<int> nums) {
 static int find_next(vector<int> nums) {
   vector<int> diffs = find_diffs(nums);
 
-  if (all_of(diffs.begin(), diffs.end(), [](int x) { return x == 0; })) {
+  if (zeroed(diffs)) {
     return nums.back() + diffs.back();
   }
 
@@ -32,7 +36,7 @@ static int find_next(vector<int> nums) {
 static int find_prev(vector<int> nums) {
   vector<int> diffs = find_diffs(nums);
 
-  if (all_of(diffs.begin(), diffs.end(), [](int x) { return x == 0; })) {
+  if (zeroed(diffs)) {
     return nums.front() - diffs.front();
   }
 
