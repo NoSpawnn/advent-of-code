@@ -9,11 +9,11 @@
 
 using namespace std;
 
-bool zeroed(vector<int> sequence) {
+template <typename T> bool zeroed(const vector<T> &sequence) {
   return all_of(sequence.begin(), sequence.end(), [](int x) { return x == 0; });
 }
 
-static vector<int> find_diffs(vector<int> nums) {
+static vector<int> find_diffs(const vector<int> &nums) {
   vector<int> diffs;
 
   for (auto it = next(nums.begin()); it != nums.end(); ++it) {
@@ -23,7 +23,7 @@ static vector<int> find_diffs(vector<int> nums) {
   return diffs;
 }
 
-static int find_next(vector<int> nums) {
+static int find_next(const vector<int> &nums) {
   vector<int> diffs = find_diffs(nums);
 
   if (zeroed(diffs)) {
@@ -33,7 +33,7 @@ static int find_next(vector<int> nums) {
   return nums.back() + find_next(diffs);
 }
 
-static int find_prev(vector<int> nums) {
+static int find_prev(const vector<int> &nums) {
   vector<int> diffs = find_diffs(nums);
 
   if (zeroed(diffs)) {
