@@ -79,7 +79,7 @@ int main() {
     maps.push_back(this_map);
   }
 
-  vector<long long> locations;
+  vector<long> locations;
   for (auto seed : seeds) {
     long cur_num = seed;
 
