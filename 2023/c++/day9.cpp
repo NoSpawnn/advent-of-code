@@ -7,7 +7,13 @@
 #include <sstream>
 #include <vector>
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::istream_iterator;
+using std::istringstream;
+using std::string;
+using std::vector;
 
 template <typename T> bool zeroed(const vector<T> &sequence) {
   return all_of(sequence.begin(), sequence.end(), [](int x) { return x == 0; });
