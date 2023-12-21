@@ -7,6 +7,7 @@
 #include <ios>
 #include <iostream>
 #include <iterator>
+#include <limits>
 #include <numeric>
 #include <regex>
 #include <sstream>
@@ -33,7 +34,7 @@ typedef struct {
 } Map;
 
 long long part1(vector<long long> seeds, vector<Map> maps) {
-  long long lowest;
+  long long lowest = numeric_limits<long>::max();
   for (auto seed : seeds) {
     long long cur_num = seed;
 
@@ -55,8 +56,7 @@ long long part1(vector<long long> seeds, vector<Map> maps) {
 
 // holy fuck this is slow
 long long part2(vector<long long> seeds, vector<Map> maps) {
-
-  long long lowest;
+  long long lowest = numeric_limits<long>::max();
   for (auto it = seeds.begin(); it != seeds.end(); ++it) {
     long long from = *it;
     ++it;
@@ -123,10 +123,7 @@ int main() {
       this_map.ranges.push_back(this_range);
     }
   }
-
-  if (!this_map.from.empty()) {
-    maps.push_back(this_map);
-  }
+  maps.push_back(this_map);
 
   cout << part1(seeds, maps) << endl;
   cout << part2(seeds, maps) << endl;
