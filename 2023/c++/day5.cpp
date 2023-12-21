@@ -2,12 +2,12 @@
 // https://adventofcode.com/2023/day/5
 
 #include <algorithm>
-#include <array>
 #include <cstdlib>
 #include <fstream>
 #include <ios>
 #include <iostream>
 #include <iterator>
+#include <numeric>
 #include <regex>
 #include <sstream>
 #include <string>
@@ -21,9 +21,9 @@ static const regex map_line_rgx(R"(([a-z]+)-to-([a-z]+) map:)");
 static const regex number_rgx(R"(\d+)");
 
 typedef struct {
-  long dest;
-  long source;
-  long len;
+  long long dest;
+  long long source;
+  long long len;
 } Range;
 
 typedef struct {
@@ -32,6 +32,55 @@ typedef struct {
   vector<Range> ranges;
 } Map;
 
+long long part1(vector<long long> seeds, vector<Map> maps) {
+  long long lowest;
+  for (auto seed : seeds) {
+    long long cur_num = seed;
+
+    for (Map &map : maps) {
+      for (Range &range : map.ranges) {
+        if (cur_num >= range.source && cur_num <= range.source + range.len) {
+          cur_num = range.dest + (cur_num - range.source);
+
+          break;
+        }
+      }
+    }
+
+    lowest = cur_num < lowest ? cur_num : lowest;
+  }
+
+  return lowest;
+}
+
+// holy fuck this is slow
+long long part2(vector<long long> seeds, vector<Map> maps) {
+
+  long long lowest;
+  for (auto it = seeds.begin(); it != seeds.end(); ++it) {
+    long long from = *it;
+    ++it;
+    long long to = *it;
+
+    for (auto seed = from; seed < from + to; ++seed) {
+      long long cur_num = seed;
+      for (Map &map : maps) {
+        for (Range &range : map.ranges) {
+          if (cur_num >= range.source && cur_num <= range.source + range.len) {
+            cur_num = range.dest + (cur_num - range.source);
+
+            break;
+          }
+        }
+      }
+
+      lowest = cur_num < lowest ? cur_num : lowest;
+    }
+  }
+
+  return lowest;
+}
+
 int main() {
   ifstream input("in.txt");
   string line;
@@ -39,8 +88,8 @@ int main() {
   getline(input, line);
   std::istringstream iss(line);
   iss.ignore(6, ':');
-  vector<long> seeds((std::istream_iterator<long>(iss)),
-                     std::istream_iterator<long>());
+  vector<long long> seeds((std::istream_iterator<long long>(iss)),
+                          std::istream_iterator<long long>());
 
   vector<Map> maps;
   Map this_map;
@@ -62,14 +111,14 @@ int main() {
 
       continue;
     } else {
-      sregex_iterator iter(line.begin(), line.end(), number_rgx), end;
+      sregex_iterator it(line.begin(), line.end(), number_rgx), end;
 
       Range this_range;
-      this_range.dest = strtol(iter->str().c_str(), NULL, 10);
-      ++iter;
-      this_range.source = strtol(iter->str().c_str(), NULL, 10);
-      ++iter;
-      this_range.len = strtol(iter->str().c_str(), NULL, 10);
+      this_range.dest = strtol(it->str().c_str(), NULL, 10);
+      ++it;
+      this_range.source = strtol(it->str().c_str(), NULL, 10);
+      ++it;
+      this_range.len = strtol(it->str().c_str(), NULL, 10);
 
       this_map.ranges.push_back(this_range);
     }
@@ -79,24 +128,8 @@ int main() {
     maps.push_back(this_map);
   }
 
-  vector<long> locations;
-  for (auto seed : seeds) {
-    long cur_num = seed;
-
-    for (auto &map : maps) {
-      for (auto &range : map.ranges) {
-        if (cur_num >= range.source && cur_num <= range.source + range.len) {
-          cur_num = range.dest + (cur_num - range.source);
-
-          break;
-        }
-      }
-    }
-
-    locations.push_back(cur_num);
-  }
-
-  cout << *min_element(locations.begin(), locations.end()) << endl;
+  cout << part1(seeds, maps) << endl;
+  cout << part2(seeds, maps) << endl;
 
   return 0;
 }
