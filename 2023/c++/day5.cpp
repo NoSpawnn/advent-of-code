@@ -33,22 +33,24 @@ typedef struct {
   vector<Range> ranges;
 } Map;
 
+static long long traverse(long long current, vector<Map> maps) {
+  for (Map &map : maps) {
+    for (Range &range : map.ranges) {
+      if (current >= range.source && current <= range.source + range.len) {
+        current = range.dest + (current - range.source);
+        break;
+      }
+    }
+  }
+
+  return current;
+}
+
 long long part1(vector<long long> seeds, vector<Map> maps) {
   long long lowest = numeric_limits<long>::max();
   for (auto seed : seeds) {
-    long long cur_num = seed;
-
-    for (Map &map : maps) {
-      for (Range &range : map.ranges) {
-        if (cur_num >= range.source && cur_num <= range.source + range.len) {
-          cur_num = range.dest + (cur_num - range.source);
-
-          break;
-        }
-      }
-    }
-
-    lowest = cur_num < lowest ? cur_num : lowest;
+    long long cur_num = traverse(seed, maps);
+    lowest = min(cur_num, lowest);
   }
 
   return lowest;
@@ -57,24 +59,13 @@ long long part1(vector<long long> seeds, vector<Map> maps) {
 // holy fuck this is slow
 long long part2(vector<long long> seeds, vector<Map> maps) {
   long long lowest = numeric_limits<long>::max();
-  for (auto it = seeds.begin(); it != seeds.end(); ++it) {
+  for (auto it = seeds.begin(); it != seeds.end(); it += 2) {
     long long from = *it;
-    ++it;
-    long long to = *it;
+    long long to = *(it + 1);
 
     for (auto seed = from; seed < from + to; ++seed) {
-      long long cur_num = seed;
-      for (Map &map : maps) {
-        for (Range &range : map.ranges) {
-          if (cur_num >= range.source && cur_num <= range.source + range.len) {
-            cur_num = range.dest + (cur_num - range.source);
-
-            break;
-          }
-        }
-      }
-
-      lowest = cur_num < lowest ? cur_num : lowest;
+      long long cur_num = traverse(seed, maps);
+      lowest = min(cur_num, lowest);
     }
   }
 
