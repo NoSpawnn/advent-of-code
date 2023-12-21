@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <sstream>
 #include <vector>
 
@@ -45,13 +46,8 @@ int main() {
   int total2 = 0;
   string line;
   while (getline(input, line)) {
-    vector<int> nums;
-
     istringstream iss(line);
-    int v;
-    while (iss >> v) {
-      nums.push_back(v);
-    }
+    vector<int> nums(istream_iterator<int>(iss), {});
 
     total1 += find_next(nums);
     total2 += find_prev(nums);
