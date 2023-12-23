@@ -56,8 +56,8 @@ int main() {
         }
       }
 
-      for (auto [color, count] : counts) {
-        if (count > MAX_COUNTS.at(color)) {
+      for (auto &pair : counts) {
+        if (pair.second > MAX_COUNTS.at(pair.first)) {
           valid = false;
           break;
         }

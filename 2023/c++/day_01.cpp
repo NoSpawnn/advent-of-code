@@ -18,10 +18,10 @@ void replace_words(string *line) {
       {"seven", "s7n"}, {"eight", "e8t"}, {"nine", "n9e"}};
 
   size_t match_start = 0;
-  for (auto [match, replace] : WORDS_TO_NUMS) {
-    while ((match_start = line->find(match)) != string::npos) {
-      line->replace(match_start, replace.length(), replace);
-      match_start += replace.length();
+  for (auto &pair : WORDS_TO_NUMS) {
+    while ((match_start = line->find(pair.first)) != string::npos) {
+      line->replace(match_start, pair.second.length(), pair.second);
+      match_start += pair.second.length();
     }
   }
 }
