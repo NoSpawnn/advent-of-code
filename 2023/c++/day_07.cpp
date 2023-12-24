@@ -20,8 +20,6 @@ using namespace std;
 #define ONE_PAIR "one"
 #define HIGH_CARD "high"
 
-string categorize_hand(string cards);
-
 typedef struct Hand {
   int bet;
   string type;
@@ -60,28 +58,6 @@ struct {
     return true;
   }
 } card_comp;
-
-int main() {
-  ifstream input("../input/day7.txt");
-
-  string cards;
-  int bet;
-  while (input >> cards) {
-    input >> bet;
-    hands.push_back(Hand{bet, categorize_hand(cards), cards});
-  }
-
-  sort(hands.begin(), hands.end(), card_comp);
-
-  for (int i = 0; i < hands.size(); ++i) {
-    total1 += hands[i].bet * (i + 1);
-  }
-
-  cout << "PART 1 TOTAL: " << total1 << endl;
-  cout << "PART 2 TOTAL: " << total2 << endl;
-
-  return 0;
-}
 
 string categorize_hand(string cards) {
   map<char, int> card_occurences;
@@ -138,4 +114,33 @@ string categorize_hand(string cards) {
   default:
     return NULL;
   }
+}
+
+static int part_1(ifstream &input) {
+  int ans = 0;
+  string cards;
+  int bet;
+
+  while (input >> cards >> bet) {
+    hands.push_back(Hand{bet, categorize_hand(cards), cards});
+  }
+
+  sort(hands.begin(), hands.end(), card_comp);
+
+  for (int i = 0; i < hands.size(); ++i) {
+    ans += hands[i].bet * (i + 1);
+  }
+
+  return ans;
+}
+
+int main() {
+  ifstream input("../input/day7.txt");
+
+  cout << "PART 1 TOTAL: " << part_1(input) << endl;
+  input.clear();
+  input.seekg(ifstream::beg);
+  cout << "PART 2 TOTAL: " << total2 << endl;
+
+  return 0;
 }
