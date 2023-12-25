@@ -9,9 +9,13 @@
 #include <string>
 #include <vector>
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::string;
+using std::vector;
 
-const char GALAXY_CHAR = '#';
+const char GALAXY = '#';
 const char DOT = '.';
 
 typedef struct Galaxy {
@@ -56,14 +60,14 @@ static vector<Galaxy> find_galaxies(const vector<string> &lines,
 
   vector<int> rows_to_expand;
   for (int row = 0; row < lines.size(); ++row) {
-    if (lines[row].find(GALAXY_CHAR) == string::npos) {
+    if (lines[row].find(GALAXY) == string::npos) {
       rows_to_expand.push_back(row);
     }
   }
 
   for (int row = 0; row < lines.size(); ++row) {
     for (int col = 0; col < lines[row].length(); ++col) {
-      if (lines[row][col] == GALAXY_CHAR) {
+      if (lines[row][col] == GALAXY) {
         int rows_above = no_to_expand(row, rows_to_expand);
         int cols_before = no_to_expand(col, cols_to_expand);
 
