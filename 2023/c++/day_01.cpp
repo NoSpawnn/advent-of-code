@@ -1,15 +1,24 @@
 // https://adventofcode.com/2023/day/1
 
+#include "common.hpp"
+
 #include <array>
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <numeric>
 #include <string>
+#include <vector>
 
-using namespace std;
+using std::accumulate;
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::map;
+using std::string;
+using std::vector;
 
-int p1_total = 0;
-int p2_total = 0;
+static const string DIGITS = "123456789";
 
 void replace_words(string *line) {
   static const map<string, string> WORDS_TO_NUMS = {
@@ -26,26 +35,30 @@ void replace_words(string *line) {
   }
 }
 
+int part_1(ifstream &input) {
+  vector<string> lines = get_lines(input);
+  return accumulate(lines.begin(), lines.end(), 0, [](int acc, string s) {
+    return acc + ((s[s.find_first_of(DIGITS)] - 0x30) * 10 +
+                  (s[s.find_last_of(DIGITS)] - 0x30));
+  });
+}
+
+int part_2(ifstream &input) {
+  vector<string> lines = get_lines(input);
+  return accumulate(lines.begin(), lines.end(), 0, [](int acc, string s) {
+    replace_words(&s);
+    return acc + ((s[s.find_first_of(DIGITS)] - 0x30) * 10 +
+                  (s[s.find_last_of(DIGITS)] - 0x30));
+  });
+}
+
 int main() {
-  ifstream input("../input/day1.txt");
+  ifstream input("in.txt");
 
-  if (!input.is_open()) {
-    perror("ERROR - failed to open file:");
-  }
+  cout << part_1(input) << endl;
+  input.clear();
+  input.seekg(ifstream::beg);
+  cout << part_2(input) << endl;
 
-  string line;
-  while (input >> line) {
-    p1_total += (line[line.find_first_of("123456789")] - 0x30) * 10 +
-                (line[line.find_last_of("123456789")] - 0x30);
-
-    replace_words(&line);
-    p2_total += (line[line.find_first_of("123456789")] - 0x30) * 10 +
-                (line[line.find_last_of("123456789")] - 0x30);
-  }
-
-  cout << "P1 TOTAL: " << p1_total << endl;
-  cout << "P2 TOTAL: " << p2_total << endl;
-
-  input.close();
   return 0;
 }
