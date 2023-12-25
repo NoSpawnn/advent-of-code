@@ -38,8 +38,8 @@ void replace_words(string *line) {
 int part_1(ifstream &input) {
   vector<string> lines = get_lines(input);
   return accumulate(lines.begin(), lines.end(), 0, [](int acc, string s) {
-    return acc + ((s[s.find_first_of(DIGITS)] - 0x30) * 10 +
-                  (s[s.find_last_of(DIGITS)] - 0x30));
+    return acc + ((s[s.find_first_of(DIGITS)] - '0') * 10 +
+                  (s[s.find_last_of(DIGITS)] - '0'));
   });
 }
 
@@ -47,8 +47,8 @@ int part_2(ifstream &input) {
   vector<string> lines = get_lines(input);
   return accumulate(lines.begin(), lines.end(), 0, [](int acc, string s) {
     replace_words(&s);
-    return acc + ((s[s.find_first_of(DIGITS)] - 0x30) * 10 +
-                  (s[s.find_last_of(DIGITS)] - 0x30));
+    return acc + ((s[s.find_first_of(DIGITS)] - '0') * 10 +
+                  (s[s.find_last_of(DIGITS)] - '0'));
   });
 }
 
