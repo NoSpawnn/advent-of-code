@@ -3,8 +3,6 @@
 #include "common.hpp"
 
 #include <algorithm>
-#include <array>
-#include <cstddef>
 #include <fstream>
 #include <iostream>
 #include <numeric>
