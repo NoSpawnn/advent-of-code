@@ -1,9 +1,10 @@
 # [Advent Of Code](https://adventofcode.com)
+- https://github.com/NoSpawnn/advent-of-code
 
 My solutions to Advent of Code by [Eric Wastl](http://was.tl/).
 
 ## Using the downloader
-- Ensure you have golang installed
+- Ensure you have [Go](https://go.dev/) installed
 - Set your AoC session key as an environment variable `AOC_SESSION_KEY`
 ```shell
 $ go run getinput.go <year> <day>
