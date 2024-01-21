@@ -53,6 +53,14 @@ func Download(sessionKey string, year, day int) {
 		log.Fatal(err)
 	}
 
+	if resp.StatusCode == http.StatusNotFound {
+		fmt.Printf("DOWNLOAD ERROR %d - requested input does not exist (%d day %d)\n", http.StatusNotFound, year, day)
+		return
+	} else if resp.StatusCode == http.StatusBadRequest {
+		fmt.Printf("DOWNLOAD ERROR %d - is your session key correct?\n", http.StatusBadRequest)
+		return
+	}
+
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
