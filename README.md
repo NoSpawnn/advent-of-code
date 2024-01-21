@@ -20,3 +20,6 @@ $ go run getinput.go <year> <day>
 - Find the row with the name "session"
 - Copy its value
 - Set is as an environment variable named `AOC_SESSION_KEY`
+```shell
+$ export AOC_SESSION_KEY=<session_key>
+```
