@@ -80,7 +80,7 @@ int part_1(ifstream &input) {
   for (Punct p : punct_positions) {
     for (Digit d : digit_positions) {
       if (is_in_range(p.line, p.col, d.line, d.start, d.end)) {
-        total += std::stoi(lines[d.line].substr(d.start, d.end + d.start));
+        total += std::stoi(lines[d.line].substr(d.start, d.end - d.start));
       }
     }
   }
