@@ -45,7 +45,7 @@ func buildRequest(sessionKey string, year, day int) *http.Request {
 	return req
 }
 
-func Download(sessionKey string, year, day int) {
+func download(sessionKey string, year, day int) {
 	req := buildRequest(sessionKey, year, day)
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -97,5 +97,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	Download(sessionKey, year, day)
+	download(sessionKey, year, day)
 }
