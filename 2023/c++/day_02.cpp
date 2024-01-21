@@ -1,7 +1,6 @@
 // https://adventofcode.com/2023/day/2
 
 #include <algorithm>
-#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -9,22 +8,43 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 #define RED "red"
 #define BLUE "blue"
 #define GREEN "green"
 
-int get_game_id_and_cut_str(std::string *s);
-std::vector<std::string> split_into_sets(std::string line);
-
 const std::map<std::string, int> MAX_COUNTS = {
     {RED, 12}, {BLUE, 14}, {GREEN, 13}};
 
+int get_game_id_and_cut_str(std::string *s) {
+  size_t colon_pos = s->find(":");
+
+  int id = strtol(s->substr(4, colon_pos).c_str(), NULL, 10);
+
+  *s = s->substr(colon_pos + 2, s->length() - colon_pos - 1);
+
+  return id;
+}
+
+std::vector<std::string> split_into_sets(std::string line) {
+  std::vector<std::string> draws;
+
+  size_t pos = 0;
+  while (pos != std::string::npos) {
+    pos = line.find(";");
+    draws.push_back(line.substr(0, pos));
+    line = line.substr(pos + 2, line.length() - pos - 1);
+  }
+
+  return draws;
+}
+
 int main() {
-  std::ifstream input("../input/day2.txt");
+  ifstream input("../input/day_02.txt");
 
   if (!input.is_open()) {
-    perror("ERROR - failed to open file:");
-
+    perror(NULL);
     return -1;
   }
 
@@ -75,27 +95,4 @@ int main() {
   std::cout << "P2 TOTAL: " << total2 << std::endl;
 
   return 0;
-}
-
-int get_game_id_and_cut_str(std::string *s) {
-  size_t colon_pos = s->find(":");
-
-  int id = strtol(s->substr(4, colon_pos).c_str(), NULL, 10);
-
-  *s = s->substr(colon_pos + 2, s->length() - colon_pos - 1);
-
-  return id;
-}
-
-std::vector<std::string> split_into_sets(std::string line) {
-  std::vector<std::string> draws;
-
-  size_t pos = 0;
-  while (pos != std::string::npos) {
-    pos = line.find(";");
-    draws.push_back(line.substr(0, pos));
-    line = line.substr(pos + 2, line.length() - pos - 1);
-  }
-
-  return draws;
 }

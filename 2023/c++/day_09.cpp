@@ -66,7 +66,12 @@ static int part_2(ifstream &input) {
 }
 
 int main() {
-  ifstream input("in.txt");
+  ifstream input("../input/day_09.txt");
+
+  if (!input.is_open()) {
+    perror(NULL);
+    return -1;
+  }
 
   cout << part_1(input) << endl;
   input.clear();

@@ -134,13 +134,24 @@ static int part_1(ifstream &input) {
   return ans;
 }
 
+static int part_2(ifstream &input) {
+  int ans = 0;
+
+  return ans;
+}
+
 int main() {
-  ifstream input("../input/day7.txt");
+  ifstream input("../input/day_07.txt");
+
+  if (!input.is_open()) {
+    perror(NULL);
+    return -1;
+  }
 
   cout << "PART 1 TOTAL: " << part_1(input) << endl;
   input.clear();
   input.seekg(ifstream::beg);
-  cout << "PART 2 TOTAL: " << total2 << endl;
+  cout << "PART 2 TOTAL: " << part_2(input) << endl;
 
   return 0;
 }

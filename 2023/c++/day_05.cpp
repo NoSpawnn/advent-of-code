@@ -72,9 +72,14 @@ long long part2(vector<long long> seeds, vector<Map> maps) {
 }
 
 int main() {
-  ifstream input("in.txt");
-  string line;
+  ifstream input("../input/day_05.txt");
 
+  if (!input.is_open()) {
+    perror(NULL);
+    return -1;
+  }
+
+  string line;
   getline(input, line);
   std::istringstream iss(line);
   iss.ignore(6, ':');

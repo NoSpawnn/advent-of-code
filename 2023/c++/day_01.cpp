@@ -3,6 +3,7 @@
 #include "common.hpp"
 
 #include <array>
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -37,6 +38,7 @@ void replace_words(string *line) {
 
 int part_1(ifstream &input) {
   vector<string> lines = get_lines(input);
+
   return accumulate(lines.begin(), lines.end(), 0, [](int acc, string s) {
     return acc + ((s[s.find_first_of(DIGITS)] - '0') * 10 +
                   (s[s.find_last_of(DIGITS)] - '0'));
@@ -45,6 +47,7 @@ int part_1(ifstream &input) {
 
 int part_2(ifstream &input) {
   vector<string> lines = get_lines(input);
+
   return accumulate(lines.begin(), lines.end(), 0, [](int acc, string s) {
     replace_words(&s);
     return acc + ((s[s.find_first_of(DIGITS)] - '0') * 10 +
@@ -53,7 +56,12 @@ int part_2(ifstream &input) {
 }
 
 int main() {
-  ifstream input("in.txt");
+  ifstream input("../input/day_01.txt");
+
+  if (!input.is_open()) {
+    perror(NULL);
+    return -1;
+  }
 
   cout << part_1(input) << endl;
   input.clear();

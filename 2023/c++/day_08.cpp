@@ -32,7 +32,13 @@ long long gcd(long long a, long long b) { return b == 0 ? a : gcd(b, a % b); }
 long long lcm(long long a, long long b) { return a * b / gcd(a, b); }
 
 int main() {
-  ifstream input("../input/day8.txt");
+  ifstream input("../input/day_08.txt");
+
+  if (!input.is_open()) {
+    perror(NULL);
+    return -1;
+  }
+
   input >> directions;
   string line;
   while (getline(input, line)) {
@@ -83,8 +89,8 @@ int main() {
     }
   }
 
-  for (auto [n, distance] : distances_traveled) {
-    total2 = lcm(total2, distance);
+  for (auto d : distances_traveled) {
+    total2 = lcm(total2, d.second);
   }
 
   cout << "PART 1 TOTAL: " << total1 << endl;

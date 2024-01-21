@@ -18,7 +18,12 @@ vector<int> times, distances;
 int total1 = 1, total2 = 0;
 
 int main() {
-  ifstream input("../input/day6.txt");
+  ifstream input("../input/day_06.txt");
+
+  if (!input.is_open()) {
+    perror(NULL);
+    return -1;
+  }
 
   string line;
   int line_no = 0;
