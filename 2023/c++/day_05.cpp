@@ -1,9 +1,6 @@
 // https://adventofcode.com/2023/day/5
 
-#include <algorithm>
-#include <cstdlib>
 #include <fstream>
-#include <ios>
 #include <iostream>
 #include <iterator>
 #include <limits>
@@ -15,15 +12,10 @@
 
 using namespace std;
 
-int p1_total = 0, p2_total = 0;
-
-static const regex map_line_rgx(R"(([a-z]+)-to-([a-z]+) map:)");
-static const regex number_rgx(R"(\d+)");
-
 typedef struct {
-  long long dest;
-  long long source;
-  long long len;
+  long dest;
+  long source;
+  long len;
 } Range;
 
 typedef struct {
@@ -32,63 +24,23 @@ typedef struct {
   vector<Range> ranges;
 } Map;
 
-static long long traverse(long long current, vector<Map> maps) {
-  for (Map &map : maps) {
-    for (Range &range : map.ranges) {
-      if (current >= range.source && current <= range.source + range.len) {
-        current = range.dest + (current - range.source);
-        break;
-      }
-    }
-  }
-
-  return current;
-}
-
-long long part1(vector<long long> seeds, vector<Map> maps) {
-  long long lowest = numeric_limits<long>::max();
-  for (auto seed : seeds) {
-    long long cur_num = traverse(seed, maps);
-    lowest = min(cur_num, lowest);
-  }
-
-  return lowest;
-}
-
-// holy fuck this is slow
-long long part2(vector<long long> seeds, vector<Map> maps) {
-  long long lowest = numeric_limits<long>::max();
-  for (auto it = seeds.begin(); it != seeds.end(); it += 2) {
-    long long from = *it;
-    long long to = *(it + 1);
-
-    for (auto seed = from; seed < from + to; ++seed) {
-      long long cur_num = traverse(seed, maps);
-      lowest = min(cur_num, lowest);
-    }
-  }
-
-  return lowest;
-}
-
-int main() {
-  ifstream input("../input/day_05.txt");
-
-  if (!input.is_open()) {
-    perror(NULL);
-    return -1;
-  }
-
+vector<long long> get_seeds(ifstream &input) {
   string line;
   getline(input, line);
   std::istringstream iss(line);
   iss.ignore(6, ':');
-  vector<long long> seeds((std::istream_iterator<long long>(iss)),
-                          std::istream_iterator<long long>());
+  return vector<long long>{(std::istream_iterator<long long>(iss)),
+                           std::istream_iterator<long long>()};
+}
 
+vector<Map> get_maps(ifstream &input) {
+  static const regex map_line_rgx(R"(([a-z]+)-to-([a-z]+) map:)");
+  static const regex number_rgx(R"(\d+)");
+
+  string line;
   vector<Map> maps;
   Map this_map;
-  getline(input, line);
+
   while (getline(input, line)) {
     smatch match;
 
@@ -109,19 +61,77 @@ int main() {
       sregex_iterator it(line.begin(), line.end(), number_rgx), end;
 
       Range this_range;
-      this_range.dest = strtol(it->str().c_str(), NULL, 10);
+      this_range.dest = std::stol(it->str(), NULL, 10);
       ++it;
-      this_range.source = strtol(it->str().c_str(), NULL, 10);
+      this_range.source = std::stol(it->str(), NULL, 10);
       ++it;
-      this_range.len = strtol(it->str().c_str(), NULL, 10);
+      this_range.len = std::stol(it->str(), NULL, 10);
 
       this_map.ranges.push_back(this_range);
     }
   }
   maps.push_back(this_map);
 
-  cout << part1(seeds, maps) << endl;
-  cout << part2(seeds, maps) << endl;
+  return maps;
+}
+
+static long long traverse(long long current, vector<Map> maps) {
+  for (Map &map : maps) {
+    for (Range &range : map.ranges) {
+      if (current >= range.source && current <= range.source + range.len) {
+        current = range.dest + (current - range.source);
+        break;
+      }
+    }
+  }
+
+  return current;
+}
+
+long long part_1(ifstream &input) {
+  long long lowest = numeric_limits<long>::max();
+  vector<long long> seeds = get_seeds(input);
+  vector<Map> maps = get_maps(input);
+
+  for (auto seed : seeds) {
+    long long cur_num = traverse(seed, maps);
+    lowest = std::min(cur_num, lowest);
+  }
+
+  return lowest;
+}
+
+// holy fuck this is slow
+long long part_2(ifstream &input) {
+  long long lowest = numeric_limits<long>::max();
+  vector<long long> seeds = get_seeds(input);
+  vector<Map> maps = get_maps(input);
+
+  for (auto it = seeds.begin(); it != seeds.end(); it += 2) {
+    long long from = *it;
+    long long to = *(it + 1);
+
+    for (auto seed = from; seed < from + to; ++seed) {
+      long long cur_num = traverse(seed, maps);
+      lowest = std::min(cur_num, lowest);
+    }
+  }
+
+  return lowest;
+}
+
+int main() {
+  ifstream input("../input/day_05.txt");
+
+  if (!input.is_open()) {
+    perror("ERROR");
+    return -1;
+  }
+
+  cout << "PART 1 TOTAL: " << part_1(input) << endl;
+  input.clear();
+  input.seekg(ifstream::beg);
+  // cout << "PART 2 TOTAL: " << part_2(input) << endl;
 
   return 0;
 }
