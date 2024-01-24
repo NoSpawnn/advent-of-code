@@ -79,7 +79,7 @@ func parseCard(line string) Card {
 	var drawNumbers []int
 
 	colonPos := strings.IndexRune(line, ':')
-	sections := strings.Split(line[colonPos+2:len(line)], " | ")
+	sections := strings.Split(line[colonPos+2:], " | ")
 
 	numPos := colonPos - 1
 	for unicode.IsDigit(rune(line[numPos])) {
