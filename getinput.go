@@ -46,6 +46,17 @@ func buildRequest(sessionKey string, year, day int) *http.Request {
 }
 
 func download(sessionKey string, year, day int) {
+	dir := fmt.Sprintf(InputDir, year)
+	if _, err := os.Stat(dir); errors.Is(err, os.ErrNotExist) {
+		os.Mkdir(dir, os.ModePerm)
+	}
+
+	f := filepath.Join(dir, fmt.Sprintf(InputFileNameFmt, day))
+	if _, err := os.Stat(f); err == nil {
+		fmt.Println("!! input file already exists !!")
+		return
+	}
+
 	req := buildRequest(sessionKey, year, day)
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -65,17 +76,6 @@ func download(sessionKey string, year, day int) {
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
-	}
-
-	dir := fmt.Sprintf(InputDir, year)
-	if _, err := os.Stat(dir); errors.Is(err, os.ErrNotExist) {
-		os.Mkdir(dir, os.ModePerm)
-	}
-
-	f := filepath.Join(dir, fmt.Sprintf(InputFileNameFmt, day))
-	if _, err := os.Stat(f); err == nil {
-		fmt.Println("!! input file already exists !!")
-		return
 	}
 
 	os.WriteFile(f, body, os.ModePerm)
