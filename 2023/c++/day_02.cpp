@@ -44,7 +44,7 @@ int main() {
   ifstream input("../input/day_02.txt");
 
   if (!input.is_open()) {
-    perror(NULL);
+    perror("ERROR");
     return -1;
   }
 

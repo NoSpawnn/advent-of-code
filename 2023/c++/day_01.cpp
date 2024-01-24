@@ -59,7 +59,7 @@ int main() {
   ifstream input("../input/day_01.txt");
 
   if (!input.is_open()) {
-    perror(NULL);
+    perror("ERROR");
     return -1;
   }
 
