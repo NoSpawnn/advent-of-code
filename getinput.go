@@ -17,6 +17,11 @@ const (
 	InputDir         = "%d/input"                                                 // Input directory, format with year
 	InputFileNameFmt = "day_%02d.txt"                                             // Format with day
 	UserAgentStr     = "github.com/NoSpawnn/advent-of-code by nospawnn@skiff.com" // Contact info so I can get shouted at for spamming
+
+	Usage = `
+Usage:
+	$ go run getinput.go <year> <day> <session key>
+	`
 )
 
 func getSessionKey() (string, error) {
@@ -70,6 +75,9 @@ func download(sessionKey string, year, day int) {
 	} else if resp.StatusCode == http.StatusBadRequest {
 		fmt.Printf("DOWNLOAD ERROR %d - is your session key correct?\n", http.StatusBadRequest)
 		return
+	} else if resp.StatusCode != http.StatusOK {
+		fmt.Printf("DOWNLOAD ERROR %d - %s", resp.StatusCode, resp.Status)
+		return
 	}
 
 	defer resp.Body.Close()
@@ -84,7 +92,12 @@ func download(sessionKey string, year, day int) {
 func main() {
 	sessionKey, err := getSessionKey()
 	if err != nil {
-		log.Fatal(err)
+		if len(os.Args) != 4 {
+			fmt.Println(err, Usage)
+			return
+		}
+
+		sessionKey = os.Args[3]
 	}
 
 	year, err := strconv.Atoi(os.Args[1])
