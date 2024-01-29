@@ -50,8 +50,7 @@ int main() {
 
   int total1 = 0;
   int total2 = 0;
-  std::string line;
-  while (std::getline(input, line)) {
+  for (string line; std::getline(input, line);) {
     int game_id = get_game_id_and_cut_str(&line);
 
     bool valid = true;

@@ -2,15 +2,15 @@
 
 #include "common.hpp"
 
-#include <cstdlib>
-#include <fstream>
+#include <array>
+#include <cmath>
+#include <cstddef>
 #include <iostream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
-enum Tile {
+enum Pipe {
   START = 'S',
   GROUND = '.',
   NS = '|',
@@ -27,33 +27,52 @@ typedef struct Path {
 
 typedef struct Pos {
   size_t row, col;
-  Tile type;
 } Pos;
-
-struct Direction {
-  int row_os, col_os;
-} N{-1, 0}, S{1, 0}, E{0, 1}, W{0, -1};
 
 static Pos find_start(const vector<string> &lines) {
   for (size_t row = 0; row < lines.size(); ++row) {
     size_t col;
-    if ((col = lines[row].find(Tile::START)) != string::npos) {
+    if ((col = lines[row].find(Pipe::START)) != string::npos) {
       return Pos{row, col};
     }
   }
 
-  std::cerr << "Start character ('" << char(Tile::START) << "') not found"
+  std::cerr << "Start character ('" << char(Pipe::START) << "') not found"
             << std::endl;
-  exit(EXIT_FAILURE);
+  std::exit(EXIT_FAILURE);
+}
+
+static int m(size_t start_row, size_t start_col, const vector<string> &lines,
+             int cur_len = 0) {
+  if (lines[start_row - 1][start_col] == Pipe::NS ||
+      lines[start_row - 1][start_col] == Pipe::SW ||
+      lines[start_row - 1][start_col] == Pipe::SE) {
+    return m(start_row - 1, start_col, lines, cur_len + 1);
+  }
+  if (lines[start_col + 1][start_col] == Pipe::NS ||
+      lines[start_col + 1][start_col] == Pipe::NW ||
+      lines[start_col + 1][start_col] == Pipe::NE) {
+    return m(start_row + 1, start_col, lines, cur_len + 1);
+  }
+  if (lines[start_col][start_col + 1] == Pipe::EW ||
+      lines[start_col][start_col + 1] == Pipe::NW ||
+      lines[start_col][start_col + 1] == Pipe::SW) {
+    return m(start_row, start_col + 1, lines, cur_len + 1);
+  }
+  if (lines[start_col][start_col - 1] == Pipe::EW ||
+      lines[start_col][start_col - 1] == Pipe::NE ||
+      lines[start_col][start_col - 1] == Pipe::SE) {
+    return m(start_row, start_col - 1, lines, cur_len + 1);
+  }
+
+  return cur_len;
 }
 
 long part_1(ifstream &input) {
-  long longest_distance = 0;
   vector<string> lines = get_lines(input);
-  Pos start_pos = find_start(lines);
-  Pos current_pos = start_pos;
+  Pos start = find_start(lines);
 
-  return longest_distance;
+  return m(start.row, start.col, lines, 'N');
 }
 
 int main() {
