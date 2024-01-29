@@ -1,10 +1,7 @@
 // https://adventofcode.com/2023/day/8
 
-#include <algorithm>
-#include <array>
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <map>
 #include <regex>
 #include <string>

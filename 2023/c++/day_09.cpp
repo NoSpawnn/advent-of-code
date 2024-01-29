@@ -1,6 +1,7 @@
 // https://adventofcode.com/2023/day/9
 
 #include "common.hpp"
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -18,7 +19,8 @@ using std::string;
 using std::vector;
 
 template <typename T> bool zeroed(const vector<T> &sequence) {
-  return all_of(sequence.begin(), sequence.end(), [](T x) { return x == 0; });
+  return std::all_of(sequence.begin(), sequence.end(),
+                     [](T x) { return x == 0; });
 }
 
 static vector<int> find_diffs(const vector<int> &nums) {

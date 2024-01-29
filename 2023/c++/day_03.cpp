@@ -2,8 +2,6 @@
 
 #include "common.hpp"
 
-#include <algorithm>
-#include <cctype>
 #include <fstream>
 #include <iostream>
 #include <string>

@@ -2,7 +2,6 @@
 
 #include "common.hpp"
 
-#include <array>
 #include <cstdio>
 #include <fstream>
 #include <iostream>

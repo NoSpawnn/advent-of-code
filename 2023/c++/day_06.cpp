@@ -2,9 +2,6 @@
 
 #include <cassert>
 #include <cmath>
-#include <cstddef>
-#include <cstdlib>
-#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <regex>
@@ -32,9 +29,9 @@ int main() {
 
     for (; iter != end; ++iter) {
       if (line_no == 0) {
-        times.push_back(strtol(iter->str().c_str(), NULL, 10));
+        times.push_back(std::stol(iter->str(), NULL, 10));
       } else {
-        distances.push_back(strtol(iter->str().c_str(), NULL, 10));
+        distances.push_back(std::stol(iter->str(), NULL, 10));
       }
     }
 
@@ -60,8 +57,8 @@ int main() {
     p2_time << times[i];
     p2_distance << distances[i];
   }
-  long time_limit = strtol(p2_time.str().c_str(), NULL, 10);
-  long distance_to_beat = strtol(p2_distance.str().c_str(), NULL, 10);
+  long time_limit = std::stol(p2_time.str(), NULL, 10);
+  long distance_to_beat = std::stol(p2_distance.str(), NULL, 10);
 
   bool has_won = false;
   for (size_t held = 0; held < time_limit; ++held) {

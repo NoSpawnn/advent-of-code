@@ -2,7 +2,6 @@
 
 #include "common.hpp"
 
-#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <numeric>
@@ -23,19 +22,19 @@ typedef struct Galaxy {
   vector<long> distances;
 
   long get_distance(const Galaxy &to) const {
-    return abs(y - to.y) + abs(x - to.x);
+    return std::abs(y - to.y) + abs(x - to.x);
   }
 } Galaxy;
 
 static int no_to_expand(int pos, vector<int> expandable) {
-  return accumulate(expandable.begin(), expandable.end(), 0,
-                    [pos](int acc, int it_pos) {
-                      if (it_pos < pos) {
-                        return acc + 1;
-                      } else {
-                        return acc;
-                      }
-                    });
+  return std::accumulate(expandable.begin(), expandable.end(), 0,
+                         [pos](int acc, int it_pos) {
+                           if (it_pos < pos) {
+                             return acc + 1;
+                           } else {
+                             return acc;
+                           }
+                         });
 }
 
 static vector<Galaxy> find_galaxies(const vector<string> &lines,
@@ -93,11 +92,11 @@ static long solve(vector<string> &lines, int expand_to) {
   vector<Galaxy> galaxies = find_galaxies(lines, expand_to);
   find_distances(&galaxies);
 
-  return accumulate(galaxies.begin(), galaxies.end(), long(0),
-                    [](long acc, const Galaxy &g) {
-                      return acc + accumulate(g.distances.begin(),
-                                              g.distances.end(), long(0));
-                    });
+  return std::accumulate(galaxies.begin(), galaxies.end(), long(0),
+                         [](long acc, const Galaxy &g) {
+                           return acc + accumulate(g.distances.begin(),
+                                                   g.distances.end(), long(0));
+                         });
 }
 
 static long part_1(ifstream &input) {
