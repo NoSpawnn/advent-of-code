@@ -8,21 +8,18 @@
 #include <string>
 #include <vector>
 
-using std::cout;
-using std::endl;
 using std::ifstream;
 using std::string;
 using std::vector;
 
-const char GALAXY = '#';
-const char DOT = '.';
+const char GALAXY = '#', DOT = '.';
 
 typedef struct Galaxy {
   int x, y;
   vector<long> distances;
 
   long get_distance(const Galaxy &to) const {
-    return std::abs(y - to.y) + abs(x - to.x);
+    return std::abs(y - to.y) + std::abs(x - to.x);
   }
 } Galaxy;
 
@@ -117,10 +114,10 @@ int main() {
     return -1;
   }
 
-  cout << part_1(input) << endl;
+  std::cout << part_1(input) << std::endl;
   input.clear();
   input.seekg(ifstream::beg);
-  cout << part_2(input) << endl;
+  std::cout << part_2(input) << std::endl;
 
   return 0;
 }
