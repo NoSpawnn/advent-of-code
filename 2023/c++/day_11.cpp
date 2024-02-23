@@ -24,14 +24,9 @@ typedef struct Galaxy {
 } Galaxy;
 
 static int no_to_expand(int pos, vector<int> expandable) {
-  return std::accumulate(expandable.begin(), expandable.end(), 0,
-                         [pos](int acc, int it_pos) {
-                           if (it_pos < pos) {
-                             return acc + 1;
-                           } else {
-                             return acc;
-                           }
-                         });
+  return std::accumulate(
+      expandable.begin(), expandable.end(), 0,
+      [pos](int acc, int it_pos) { return it_pos < pos ? acc + 1 : acc; });
 }
 
 static vector<Galaxy> find_galaxies(const vector<string> &lines,
