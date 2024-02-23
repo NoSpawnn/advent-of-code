@@ -10,8 +10,6 @@
 #include <sstream>
 #include <vector>
 
-using std::cout;
-using std::endl;
 using std::ifstream;
 using std::istream_iterator;
 using std::istringstream;
@@ -75,10 +73,10 @@ int main() {
     return -1;
   }
 
-  cout << part_1(input) << endl;
+  std::cout << part_1(input) << std::endl;
   input.clear();
   input.seekg(ifstream::beg);
-  cout << part_2(input) << endl;
+  std::cout << part_2(input) << std::endl;
 
   return 0;
 }

@@ -2,10 +2,16 @@
 
 #include "common.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cmath>
+#include <cstddef>
 #include <iostream>
+#include <map>
+#include <queue>
+#include <stack>
 #include <string>
+#include <utility>
 
 using namespace std;
 
@@ -20,19 +26,46 @@ enum Pipe {
   SE = 'F',
 };
 
+enum Direction {
+  N = 'N',
+  S = 'S',
+  E = 'E',
+  W = 'W',
+};
+
 typedef struct Path {
   long length, distance;
 } Path;
 
-typedef struct Pos {
-  size_t row, col;
-} Pos;
+Pipe pipe_from_char(const char c) {
+  switch (c) {
+  case 'S':
+    return START;
+  case '.':
+    return GROUND;
+  case '|':
+    return NS;
+  case '-':
+    return EW;
+  case 'L':
+    return NE;
+  case 'J':
+    return NW;
+  case '7':
+    return SW;
+  case 'F':
+    return SE;
+  }
 
-static Pos find_start(const vector<string> &lines) {
+  std::cout << c << " NOT FOUND IN TILES" << std::endl;
+  exit(EXIT_FAILURE);
+}
+
+static pair<size_t, size_t> find_start(const vector<string> &lines) {
   for (size_t row = 0; row < lines.size(); ++row) {
     size_t col;
     if ((col = lines[row].find(Pipe::START)) != string::npos) {
-      return Pos{row, col};
+      return make_pair(row, col);
     }
   }
 
@@ -41,37 +74,106 @@ static Pos find_start(const vector<string> &lines) {
   std::exit(EXIT_FAILURE);
 }
 
-static int m(size_t start_row, size_t start_col, const vector<string> &lines,
-             int cur_len = 0) {
-  if (lines[start_row - 1][start_col] == Pipe::NS ||
-      lines[start_row - 1][start_col] == Pipe::SW ||
-      lines[start_row - 1][start_col] == Pipe::SE) {
-    return m(start_row - 1, start_col, lines, cur_len + 1);
+static void add_direction(stack<Direction> &directions, Pipe pipe,
+                          Direction from) {
+  switch (pipe) {
+  case START:
+    break;
+  case NS:
+    directions.push(from == N ? S : N);
+    break;
+  case EW:
+    directions.push(from == E ? W : E);
+    break;
+  case NE:
+    directions.push(from == N ? E : N);
+    break;
+  case NW:
+    directions.push(from == N ? W : N);
+    break;
+  case SW:
+    directions.push(from == S ? W : S);
+    break;
+  case SE:
+    directions.push(from == S ? E : S);
+    break;
+  default:
+    std::cout << "BAD PIPE" << std::endl;
+    exit(EXIT_FAILURE);
   }
-  if (lines[start_col + 1][start_col] == Pipe::NS ||
-      lines[start_col + 1][start_col] == Pipe::NW ||
-      lines[start_col + 1][start_col] == Pipe::NE) {
-    return m(start_row + 1, start_col, lines, cur_len + 1);
-  }
-  if (lines[start_col][start_col + 1] == Pipe::EW ||
-      lines[start_col][start_col + 1] == Pipe::NW ||
-      lines[start_col][start_col + 1] == Pipe::SW) {
-    return m(start_row, start_col + 1, lines, cur_len + 1);
-  }
-  if (lines[start_col][start_col - 1] == Pipe::EW ||
-      lines[start_col][start_col - 1] == Pipe::NE ||
-      lines[start_col][start_col - 1] == Pipe::SE) {
-    return m(start_row, start_col - 1, lines, cur_len + 1);
-  }
-
-  return cur_len;
 }
 
-long part_1(ifstream &input) {
+int part_1(ifstream &input) {
   vector<string> lines = get_lines(input);
-  Pos start = find_start(lines);
+  pair<size_t, size_t> start = find_start(lines);
+  pair<size_t, size_t> current_pos = start;
+  stack<Direction> directions;
+  directions.push(E);
+  map<Direction, int> path_lengths = {
+      {N, 0},
+      {S, 0},
+      {E, 0},
+      {W, 0},
+  };
 
-  return m(start.row, start.col, lines, 'N');
+  while (!directions.empty()) {
+    switch (directions.top()) {
+      directions.pop();
+    case N:
+      path_lengths[N] += (lines[current_pos.first][current_pos.second] == NS ||
+                          lines[current_pos.first][current_pos.second] == SW ||
+                          lines[current_pos.first][current_pos.second] == SE)
+                             ? 1
+                             : 0;
+      current_pos.first++;
+      add_direction(
+          directions,
+          pipe_from_char(lines[current_pos.first][current_pos.second]), S);
+      break;
+    case S:
+      path_lengths[S] += (lines[current_pos.first][current_pos.second] == NS ||
+                          lines[current_pos.first][current_pos.second] == NW ||
+                          lines[current_pos.first][current_pos.second] == NE)
+                             ? 1
+                             : 0;
+      current_pos.first--;
+      add_direction(
+          directions,
+          pipe_from_char(lines[current_pos.first][current_pos.second]), N);
+      break;
+    case E:
+      path_lengths[E] += (lines[current_pos.first][current_pos.second] == EW ||
+                          lines[current_pos.first][current_pos.second] == SW ||
+                          lines[current_pos.first][current_pos.second] == NW)
+                             ? 1
+                             : 0;
+      current_pos.second++;
+      add_direction(
+          directions,
+          pipe_from_char(lines[current_pos.first][current_pos.second]), W);
+      break;
+    case W:
+      path_lengths[W] += (lines[current_pos.first][current_pos.second] == EW ||
+                          lines[current_pos.first][current_pos.second] == SE ||
+                          lines[current_pos.first][current_pos.second] == NE)
+                             ? 1
+                             : 0;
+      current_pos.second--;
+      add_direction(
+          directions,
+          pipe_from_char(lines[current_pos.first][current_pos.second]), E);
+      break;
+    }
+
+    if (lines[current_pos.first][current_pos.second] == Pipe::START) {
+      break;
+    }
+  }
+
+  return std::max_element(
+             path_lengths.begin(), path_lengths.end(),
+             [](const auto &a, const auto &b) { return a.second < b.second; })
+      ->second;
 }
 
 int main() {
