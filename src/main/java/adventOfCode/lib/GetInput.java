@@ -1,4 +1,4 @@
-package com.nospawnn.adventOfCode.lib;
+package adventOfCode.lib;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;

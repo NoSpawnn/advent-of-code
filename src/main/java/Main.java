@@ -1,8 +1,6 @@
-package com.nospawnn;
-
-import com.nospawnn.adventOfCode.lib.GetInput;
-import com.nospawnn.adventOfCode.lib.Solver;
-import com.nospawnn.adventOfCode.lib.SolverMap;
+import adventOfCode.lib.GetInput;
+import adventOfCode.lib.Solver;
+import adventOfCode.lib.SolverMap;
 
 public class Main {
     public static void main(String[] args) throws Exception {

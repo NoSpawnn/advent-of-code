@@ -1,4 +1,4 @@
-package com.nospawnn.adventOfCode.lib;
+package adventOfCode.lib;
 
 public interface Solver {
     public String getYearStr();

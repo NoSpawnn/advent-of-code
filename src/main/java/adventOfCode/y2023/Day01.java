@@ -1,6 +1,6 @@
-package com.nospawnn.adventOfCode.y2023;
+package adventOfCode.y2023;
 
-import com.nospawnn.adventOfCode.lib.Solver;
+import adventOfCode.lib.Solver;
 
 import java.util.ArrayList;
 import java.util.Collections;
