@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92da2e95-cfbb-4074-a5cc-6bc3532d1070" name="Changes" comment="" />
+    <list default="true" id="92da2e95-cfbb-4074-a5cc-6bc3532d1070" name="Changes" comment="Added comment separatorsAdd tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/lib/GetInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/runner/GetInput.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/lib/SolverMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/runner/SolverMap.kt" afterDir="false" />
+      <change beforePath="/mnt/ssd/documents/programming/adventOfCode/.idea/workspace.xml" beforeDir="false" afterPath="/mnt/ssd/documents/programming/adventOfCode/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/Main.kt" beforeDir="false" afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/GetInput.kt" beforeDir="false" afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/runner/GetInput.kt" afterDir="false" />
+      <change beforePath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/Solver.kt" beforeDir="false" afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/Solver.kt" afterDir="false" />
+      <change beforePath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/SolverMap.kt" beforeDir="false" afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/runner/SolverMap.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +24,16 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -22,6 +41,7 @@
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
         <option value="Kotlin Object" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -40,7 +60,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.SolutionTest.part1 (1).executor": "Run",
+    "Gradle.SolutionTest.part1 (2).executor": "Run",
+    "Gradle.SolutionTest.part1.executor": "Run",
+    "Gradle.SolutionTest.part2 (1).executor": "Run",
+    "Gradle.SolutionTest.part2 (2).executor": "Run",
+    "Gradle.SolutionTest.part2.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin",
@@ -61,9 +93,149 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="adventOfCode.lib" />
       <recent name="adventOfCode.y2023.d01" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="adventOfCode.y2023.d01" />
+      <recent name="adventOfCode.y2015.d02" />
+      <recent name="adventOfCode.y2015.d01" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.SolutionTest.part2 (2)">
+    <configuration name="SolutionTest.part1 (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;adventOfCode.y2015.d02.SolutionTest.part1&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SolutionTest.part1 (2)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;adventOfCode.y2023.d01.SolutionTest.part1&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SolutionTest.part2 (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;adventOfCode.y2015.d02.SolutionTest.part2&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SolutionTest.part2 (2)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;adventOfCode.y2023.d01.SolutionTest.part2&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SolutionTest.part2" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;adventOfCode.y2015.d01.SolutionTest.part2&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.SolutionTest.part2 (2)" />
+        <item itemvalue="Gradle.SolutionTest.part1 (2)" />
+        <item itemvalue="Gradle.SolutionTest.part2 (1)" />
+        <item itemvalue="Gradle.SolutionTest.part1 (1)" />
+        <item itemvalue="Gradle.SolutionTest.part2" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -81,11 +253,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1722729923514</updated>
-      <workItem from="1722729924496" duration="1502000" />
+      <workItem from="1722729924496" duration="3286000" />
     </task>
+    <task id="LOCAL-00001" summary="Add README.md">
+      <option name="closed" value="true" />
+      <created>1722731609962</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722731609962</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added comment separators">
+      <option name="closed" value="true" />
+      <created>1722731624048</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722731624048</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add README.md" />
+    <MESSAGE value="Added comment separators" />
+    <MESSAGE value="Added comment separatorsAdd tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comment separatorsAdd tests" />
   </component>
 </project>

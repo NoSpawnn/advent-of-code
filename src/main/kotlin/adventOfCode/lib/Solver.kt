@@ -8,7 +8,7 @@ interface Solver {
         val part1Ans = part1(input)
         val part2Ans = part2(input)
 
-        println("${this.day} Day ${this.year}:\n  Part 1: $part1Ans\n  Part 2: $part2Ans")
+        println("${this.year} Day ${this.day}:\n  Part 1: $part1Ans\n  Part 2: $part2Ans")
     }
 
     fun part1(input: String): Number

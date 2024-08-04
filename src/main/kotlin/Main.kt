@@ -1,6 +1,6 @@
-import adventOfCode.lib.GetInput
 import adventOfCode.lib.Solver
-import adventOfCode.lib.SolverMap
+import runner.GetInput
+import runner.SolverMap
 import java.io.IOException
 import java.nio.file.Files
 

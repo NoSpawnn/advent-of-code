@@ -1,4 +1,4 @@
-package adventOfCode.lib
+package runner
 
 import java.net.HttpURLConnection
 import java.net.URI

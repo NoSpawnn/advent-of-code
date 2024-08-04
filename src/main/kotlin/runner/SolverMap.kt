@@ -1,4 +1,6 @@
-package adventOfCode.lib
+package runner
+
+import adventOfCode.lib.Solver
 
 object SolverMap {
     private val solvers: Map<String, Solver> = hashMapOf(
