@@ -6,16 +6,12 @@ class Solution : Solver {
     override val year: String = "2015"
     override val day: String = "02"
 
-    override fun part1(input: String): Int {
-        return boxes(input).sumOf { sides ->
-            2 * sides[0] * sides[1] + 2 * sides[1] * sides[2] + 2 * sides[0] * sides[2] + sides[0] * sides[1]
-        }
+    override fun part1(input: String): Int = boxes(input).sumOf { sides ->
+        2 * sides[0] * sides[1] + 2 * sides[1] * sides[2] + 2 * sides[0] * sides[2] + sides[0] * sides[1]
     }
 
-    override fun part2(input: String): Int {
-        return boxes(input).sumOf { sides ->
-            sides[0] * 2 + sides[1] * 2 + sides[0] * sides[1] * sides[2]
-        }
+    override fun part2(input: String): Int = boxes(input).sumOf { sides ->
+        sides[0] * 2 + sides[1] * 2 + sides[0] * sides[1] * sides[2]
     }
 
     private fun boxes(input: String) = sequence {

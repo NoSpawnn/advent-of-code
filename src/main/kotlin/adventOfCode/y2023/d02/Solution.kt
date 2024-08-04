@@ -8,19 +8,19 @@ class Solution : Solver {
     override val year: String = "2023"
     override val day: String = "02"
 
-    override fun part1(input: String): Number {
-        return input.lines().filter { it.isNotBlank() }.sumOf { line ->
+    override fun part1(input: String): Number =
+        input.lines().filter { it.isNotBlank() }.sumOf { line ->
             val game = gameFrom(line)
             if (game.red <= 12 && game.green <= 14 && game.blue <= 14) game.id else 0
         }
-    }
 
-    override fun part2(input: String): Number {
-        return input.lines().filter { it.isNotBlank() }.sumOf { line ->
+
+    override fun part2(input: String): Number =
+        input.lines().filter { it.isNotBlank() }.sumOf { line ->
             val game = gameFrom(line)
             game.red * game.green * game.blue
         }
-    }
+
 
     private fun gameFrom(input: String) = Game(
         getInts(input, "Game (\\d+)").first(),

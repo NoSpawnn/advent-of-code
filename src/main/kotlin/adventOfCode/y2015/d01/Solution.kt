@@ -8,13 +8,9 @@ class Solution : Solver {
     override val year: String = "2015"
     override val day: String = "01"
 
-    override fun part1(input: String): Int {
-        return floors(input).last().level
-    }
+    override fun part1(input: String): Int = floors(input).last().level
 
-    override fun part2(input: String): Int {
-        return floors(input).find { floor -> floor.level == -1 }!!.idx + 1
-    }
+    override fun part2(input: String): Int = floors(input).find { floor -> floor.level == -1 }!!.idx + 1
 
     private fun floors(input: String) = sequence {
         var level = 0
