@@ -31,7 +31,9 @@ object Solution : Solver {
     }
 
     private fun areAdjacent(p1: Part, p2: Part): Boolean =
-        abs(p1.row - p2.row) <= 1 && p1.col <= p2.col + p2.text.length && p2.col <= p1.col + p1.text.length
+        abs(p1.row - p2.row) <= 1 &&
+                p1.col <= p2.col + p2.text.length &&
+                p2.col <= p1.col + p1.text.length
 
     private fun parse(rows: List<String>, regex: Regex): List<Part> =
         rows.filter { it.isNotBlank() }
