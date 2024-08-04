@@ -4,7 +4,7 @@ import adventOfCode.lib.Solver
 
 data class Game(val id: Int, val red: Int, val green: Int, val blue: Int)
 
-class Solution : Solver {
+object Solution : Solver {
     override val year: String = "2023"
     override val day: String = "02"
 

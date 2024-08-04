@@ -4,7 +4,7 @@ import adventOfCode.lib.Solver
 
 data class Floor(val level: Int, val idx: Int)
 
-class Solution : Solver {
+object Solution : Solver {
     override val year: String = "2015"
     override val day: String = "01"
 

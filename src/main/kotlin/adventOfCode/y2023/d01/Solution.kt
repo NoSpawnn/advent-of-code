@@ -2,7 +2,7 @@ package adventOfCode.y2023.d01
 
 import adventOfCode.lib.Solver
 
-class Solution : Solver {
+object Solution : Solver {
     override val year: String = "2023"
     override val day: String = "01"
 

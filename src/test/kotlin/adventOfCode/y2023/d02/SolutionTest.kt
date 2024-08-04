@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test
 
 
 class SolutionTest {
-    private val solver = Solution()
-
     private val testInput = """
         Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
         Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
@@ -20,11 +18,11 @@ class SolutionTest {
 
     @Test
     fun part1() {
-        assertEquals(solver.part1(testInput), part1Expected)
+        assertEquals(Solution.part1(testInput), part1Expected)
     }
 
     @Test
     fun part2() {
-        assertEquals(solver.part2(testInput), part2Expected)
+        assertEquals(Solution.part2(testInput), part2Expected)
     }
 }

@@ -18,14 +18,14 @@ class SolutionTest {
     @Test
     fun part1() {
         for ((input, expected) in part1TestInputs) {
-            assertEquals(Solution().part1(input), expected)
+            assertEquals(Solution.part1(input), expected)
         }
     }
 
     @Test
     fun part2() {
         for ((input, expected) in part2TestInputs) {
-            assertEquals(Solution().part2(input), expected)
+            assertEquals(Solution.part2(input), expected)
         }
     }
 }
