@@ -23,6 +23,8 @@ kotlin {
     jvmToolchain(21)
 }
 
+
+
 tasks.register<JavaExec>("download") {
     group = "Advent of Code"
     description = "Download the given date's input"

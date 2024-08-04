@@ -1,4 +1,4 @@
-import adventOfCode.lib.Solver
+import lib.Solver
 import runner.GetInput
 import runner.SolverMap
 import java.io.IOException
