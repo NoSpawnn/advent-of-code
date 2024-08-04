@@ -1,6 +1,9 @@
 package runner
 
 import adventOfCode.lib.Solver
+import runner.GetInput.getInputPath
+import java.io.File
+import java.nio.file.Files
 
 object SolverMap {
     private val solvers: Map<String, Solver> = hashMapOf(
@@ -14,5 +17,19 @@ object SolverMap {
 
     fun getSolver(name: String): Solver? {
         return solvers[name]
+    }
+
+    fun solveAll() {
+        solvers.toList().sortedBy { it.first }.forEach { (name, solver) ->
+            val (year, day) = name.split("/");
+            val inputFilePath = getInputPath(year, day)
+
+            if (!Files.exists(inputFilePath)) return@forEach
+
+            val f = File(inputFilePath.toUri())
+            val input = f.readText()
+
+            solver.solve(input);
+        }
     }
 }

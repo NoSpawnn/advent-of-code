@@ -23,6 +23,11 @@ fun main(args: Array<String>) {
         }
 
         "solve" -> {
+            if (args[1] == "all") {
+                SolverMap.solveAll()
+                return
+            }
+
             val solver: Solver? = SolverMap.getSolver(args[1])
             if (solver == null) {
                 println("Invalid date ${args[1]}")
