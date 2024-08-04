@@ -20,6 +20,8 @@ class Solution : Solver {
 
     private fun boxes(input: String) = sequence {
         input.split('\n').forEach { line ->
+            if (line.isBlank()) return@forEach
+
             val sides = line.split('x')
             yield(sides.map { it.trim().toInt() }.sorted())
         }
