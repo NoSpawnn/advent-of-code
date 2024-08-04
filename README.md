@@ -1,6 +1,6 @@
 # [Advent Of Code](https://adventofcode.com)
 
-- <https://github.com/NoSpawnn/advent-of-code>
+- <https://github.com/NoSpawnn/adventOfCode>
 
 My solutions to Advent of Code by [Eric Wastl](http://was.tl/).
 
