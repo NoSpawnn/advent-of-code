@@ -4,7 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3bf032a-a9c3-41c4-95ad-18495079e59d" name="Changes" comment="" />
+    <list default="true" id="92da2e95-cfbb-4074-a5cc-6bc3532d1070" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/lib/GetInput.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/lib/Solver.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/lib/SolverMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/y2015/d01/Solution.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/y2015/d02/Solution.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/adventOfCode/y2023/d01/Solution.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/.gitignore" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/.idea/.gitignore" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/.idea/misc.xml" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/build.gradle.kts" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/gradle.properties" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/gradlew" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/gradlew.bat" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/settings.gradle.kts" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/GetInput.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/Solver.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/lib/SolverMap.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/y2015/d01/Solution.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/y2015/d02/Solution.kt" afterDir="false" />
+      <change afterPath="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin/adventOfCode/y2023/d01/Solution.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,13 +54,24 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="/mnt/ssd/documents/programming/adventOfCode" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
+  "customColor": "",
+  "associatedIndex": 1
 }]]></component>
-  <component name="ProjectId" id="2kAVEC95nMjg5mwvJPBBiuGtTKo" />
+  <component name="ProjectId" id="2kAcfG2BFnZsGJrMKm38TC2wIHq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,10 +82,28 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "/home/adam/.gradle"
+    ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="/mnt/ssd/documents/programming/adventOfCode/src/main/kotlin" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="adventOfCode.y2023.d01" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -47,11 +115,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c3bf032a-a9c3-41c4-95ad-18495079e59d" name="Changes" comment="" />
-      <created>1722726253815</created>
+      <changelist id="92da2e95-cfbb-4074-a5cc-6bc3532d1070" name="Changes" comment="" />
+      <created>1722729923514</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1722726253815</updated>
+      <updated>1722729923514</updated>
+      <workItem from="1722729924496" duration="1181000" />
     </task>
     <servers />
   </component>
