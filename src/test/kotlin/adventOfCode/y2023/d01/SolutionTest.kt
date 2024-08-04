@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class SolutionTest {
+    private val solver = Solution()
+
     private val part1TestInput = """
         1abc2
         pqr3stu8vwx
@@ -25,11 +27,11 @@ class SolutionTest {
 
     @Test
     fun part1() {
-        assertEquals(Solution().part1(part1TestInput), part1Expected)
+        assertEquals(solver.part1(part1TestInput), part1Expected)
     }
 
     @Test
     fun part2() {
-        assertEquals(Solution().part2(part2TestInput), part2Expected)
+        assertEquals(solver.part2(part2TestInput), part2Expected)
     }
 }
